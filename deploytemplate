@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name": {
+      "type": "string",
+      "defaultValue": "PoCCustomer01"
+    },
+    "labName": {
+      "type": "string",
+      "defaultValue": "CloudServicePocLab"
+    },
+    "userName": {
+      "type": "string",
+      "defaultValue": "inriveradmin"
+    },
+    "size": {
+      "type": "string",
+      "defaultValue": "Standard_DS2",
+      "allowedValues":[
+        "Standard_DS3",
+        "Standard_DS12",
+        "Standard_DS2"
+        ],
+        "metadata": {
+          "description": "Choose the size for the PoC server"
+          }
+        },
+    "password": {
+      "type": "securestring"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-05-21-preview",
+      "type": "Microsoft.DevTestLab/labs/virtualMachines",
+      "name": "[concat(parameters('labName'), '/', parameters('name'))]",
+      "location": "westeurope",
+      "properties": {
+        "labVirtualNetworkId": "[concat(resourceGroup().id, '/providers/Microsoft.DevTestLab/labs/', parameters('labName'), '/virtualnetworks/dtlcloudservicepoclab')]",
+        "notes": "PocImageGolden",
+        "customImageId": "/subscriptions/49a4f74e-a58a-4124-a20f-0e3cbd641c64/resourcegroups/cloudservicepoclabrg408846/providers/microsoft.devtestlab/labs/cloudservicepoclab/customimages/pocimagegolden",
+        "size": "[parameters('size')]",
+        "userName": "[parameters('userName')]",
+        "password": "[parameters('password')]",
+        "isAuthenticationWithSshKey": false,
+        "labSubnetName": "DtlCloudServicePocLabSubnet",
+        "disallowPublicIpAddress": false,
+        "osType": ""
+      }
+    }
+  ]
+}
