@@ -12,7 +12,7 @@
     },
     "userName": {
       "type": "string",
-      "defaultValue": "inriveradmin"
+      "defaultValue": "ThanosAdmin"
     },
     "size": {
       "type": "string",
@@ -39,7 +39,7 @@
       "properties": {
         "labVirtualNetworkId": "[concat(resourceGroup().id, '/providers/Microsoft.DevTestLab/labs/', parameters('labName'), '/virtualnetworks/dtlcloudservicepoclab')]",
         "notes": "PocImageGolden",
-        "customImageId": "/subscriptions/49a4f74e-a58a-4124-a20f-0e3cbd641c64/resourcegroups/cloudservicepoclabrg408846/providers/microsoft.devtestlab/labs/cloudservicepoclab/customimages/pocimagegolden",
+        "customImageId": "/subscriptions/entersubscriptionID/resourcegroups/cloudservicepoclabrg408846/providers/microsoft.devtestlab/labs/cloudservicepoclab/customimages/pocimagegolden",
         "size": "[parameters('size')]",
         "userName": "[parameters('userName')]",
         "password": "[parameters('password')]",
